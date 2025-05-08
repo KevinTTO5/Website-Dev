@@ -3,7 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - aws cloudfront create-invalidation --distribution-id $E2OMMFA4OEMW8X --paths "/*" --region us-east-1
+      - aws cloudfront create-invalidation --distribution-id E2OMMFA4OEMW8X --paths "/*" --region us-east-1
 artifacts:
   files:
     - '**/*'
