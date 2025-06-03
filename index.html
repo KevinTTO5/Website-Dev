@@ -1,122 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin Rodriguez</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f9;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kevin Rodriguez</title>
+  <!-- AOS Animation Library CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Tailwind Play CDN & custom theme -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'accent': '#D6C8B5',       // pastel accent
+            'dark-bg': '#2A2B2D'       // dark background tone
+          },
+          fontFamily: {
+            sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']
+          }
         }
-        header {
-            background: #4CAF50;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        nav {
-            margin: 20px 0;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.2em;
-        }
-        section {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        section h2 {
-            margin-top: 0;
-            color: #4CAF50;
-        }
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-        footer a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-    </style>
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header>
-        <h1>Kevin Rodriguez Website</h1>
-        <nav>
-  <a href="index.html">Home</a> |
-  <a href="about.html">About Me</a>
-</nav>
-    </header>
+<body class="bg-dark-bg text-white font-sans antialiased">
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hello! I'm Kevin Rodriguez, a passionate 3rd year at the University of Central Florida studying Computer Science with a love for computer graphics and signal processing. I enjoy creating innovative solutions to challenging problems.
-           I hope you enjoy my portfolio!</p>
-    </section>
+  <!-- Navigation: transparent then drop/fade on scroll -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 transform transition-all duration-500 ease-out">
+    <div id="nav-inner" class="container mx-auto px-6 py-4 flex justify-end space-x-4">
+      <a href="#hero" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Home</a>
+      <a href="#about" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">About</a>
+      <a href="#projects" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Projects</a>
+      <a href="#contact" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Contact</a>
+    </div>
+  </header>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Programming Languages:JavaScript, C, C++, HTML</li>
-            <li>Frameworks & Libraries: React</li>
-            <li>Tools: Git, VS Code</li>
-            <li>Other: Problem Solving, Team Collaboration, Perseverance, Adaptability</li>
-        </ul>
-         </section>
-
-    <section id="projects">
-    <h2>Projects</h2>
-    <div>
-        <h3>Project 1: Garage Distance Calculator</h3>
-        <p>Program calculates the minimum distance given a starting point and coordinates to different garages. Uses different sorting methods in order to go through calculating the shortest distance PAIRS so that the total distance is as minimal as possible.</p>
-        <a href="https://github.com/KevinTTO5/KevinTTO5.github.io/blob/main/Programming%20Assignment%202/main.c" target="_blank">View on GitHub</a>
-    </div>
-    <div>
-        <h3>Project 2: Garage Elimination Game</h3>
-        <p>A small mathematical game involving 2 different elimination phases resulting in 1 ultimate winner. Uses queue concepts and manipulating queues/linked lists.</p>
-        <a href="https://github.com/KevinTTO5/KevinTTO5.github.io/blob/main/Programming%20Assignment%202/main.c" target="_blank">View on GitHub</a>
-    </div>
-    <div>
-        <h3>Project 3: Student Schedule Builder </h3>
-        <p>This is an app script I created whilst working at Mathnasium, aimed to automate the process of assigning students to instructors for the daily operations. Works via app scripts and pulls events and data from google calendars.</p>
-        <a href="https://github.com/KevinTTO5/KevinTTO5.github.io/blob/main/Schedule%20Builder%20AppScripts" target="_blank">View on GitHub</a>
-    </div>
-    <div>
-        <h3>Project 4: Campus Network Planner </h3>
-        <p>This is a project that I did that showcased graphing algorithms such as Kruskal's Algorithm in order to connect different campus networks with the least possible cost.</p>
-        <a href="https://github.com/KevinTTO5/KevinTTO5.github.io/blob/main/CampusNetworkPlanner.java" target="_blank">View on GitHub</a>
+  <!-- Hero Section -->
+  <section id="hero" class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('icons/mug-background.jpg');">
+    <div class="absolute inset-0 bg-dark-bg bg-opacity-60"></div>
+    <div class="relative text-center px-6" data-aos="fade-in">
+      <img src="icons/cat.jpg" alt="Kevin Rodriguez" class="w-32 h-32 rounded-full mx-auto mb-6 transform transition duration-500 hover:scale-110 border-4 border-white" />
+      <h1 class="text-5xl font-bold mb-4">Hi, I&rsquo;m Kevin Rodriguez</h1>
+      <p class="text-xl max-w-2xl mx-auto">Software Engineer &middot; Graphics Enthusiast &middot; Open-Source Contributor</p>
     </div>
   </section>
-    
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>If you'd like to get in touch, please reach out via one of the following:</p>
-        <ul>
-            <li>Email: <a href="mailto:kevinarodriguez255@gmail.com">kevinarodriguez255@gmail.com</a></li>
-            <li>LinkedIn: <a href="https://www.linkedin.com/in/kevin-rodriguez-098943191/" target="_blank">LinkedIn Profile</a></li>
-            <li>GitHub: <a href="https://github.com/KevinTTO5/KevinTTO5.github.io" target="_blank">GitHub Profile</a></li>
-        </ul>
-    </section>
 
-    <footer>
-        <p>&copy; 2025 Kevin Rodriguez. All Rights Reserved. | <a href="#about">Back to Top</a></p>
-    </footer>
+  <!-- About Preview Section -->
+  <section id="about" class="h-screen bg-white flex items-center">
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="card bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900" data-aos="fade-up">
+        <h2 class="text-2xl font-bold mb-2 text-dark-bg">Welcome</h2>
+        <p class="text-dark-bg">Welcome to my personal portfolio. Here you’ll find highlights of my work, my skills, and what drives me as a developer.</p>
+      </div>
+      <div class="card bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900" data-aos="fade-up" data-aos-delay="200">
+        <h2 class="text-2xl font-semibold mb-2 text-dark-bg">About This Page: Projects</h2>
+        <p class="text-dark-bg">This section houses my project highlights as well as WIP interactive demos. 
+          These projects consist of independent work, as well as coursework through my latter college years.</p>
+      </div>
+      <div
+      class="card
+             bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900
+             md:col-span-2            /* makes it stretch across both columns */
+             justify-self-center     /* centers it within that span */
+             max-w-md                /* limit its width so it doesn’t fill the entire row */
+             mt-4                    /* optional: add a bit of top-margin so it sits below the above two */
+             "
+      data-aos="fade-up"
+      data-aos-delay="200">
+        <h2 class="text-2xl font-semibold mb-2 text-dark-bg">About This Page: Contact</h2>
+        <p class="text-dark-bg">This section houses any forms of contacting me as well as a WIP means of direct chat 
+          for some more interactive communication.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Preview Section -->
+  <section id="projects" class="h-screen bg-gray-200 flex items-center">
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="card bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900" data-aos="fade-up">
+        <h2 class="text-2xl font-bold mb-2 text-dark-bg">Garage Distance Calculator</h2>
+        <p class="text-dark-bg">Program calculates the minimum distance given a starting point and coordinates to different garages. 
+          Uses different sorting methods in order to go through calculating the shortest distance PAIRS 
+          so that the total distance is as minimal as possible.
+          <a href="https://github.com/KevinTTO5/KevinTTO5.github.io/blob/main/Programming%20Assignment%202/main.c" 
+          class="text-accent underline" target="_blank">View on GitHub</a>.</p>
+      </div>
+      <div class="card bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900" data-aos="fade-up">
+        <h2 class="text-2xl font-bold mb-2 text-dark-bg">Garage Elimination Game</h2>
+        <p class="text-dark-bg">A small mathematical game involving 2 different elimination phases resulting 
+          in 1 ultimate winner. Uses queue concepts and manipulating queues/linked lists. 
+          <a href="https://github.com/KevinTTO5/KevinTTO5.github.io/blob/main/Programming%20Assignment%202/main.c" 
+          class = "text-accent underline" target="_blank">View on GitHub</a>.</p>
+      </div>
+      <div class="card bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900" data-aos="fade-up">
+        <h2 class="text-2xl font-bold mb-2 text-dark-bg">Student Schedule Builder</h2>
+        <p class="text-dark-bg">This is an app script I created whilst working at Mathnasium, 
+          aimed to automate the process of assigning students to instructors for the daily 
+          operations. Works via app scripts and pulls events and data from google calendars. 
+          <a href="https://github.com/KevinTTO5/KevinTTO5.github.io/blob/main/Schedule%20Builder%20AppScripts" 
+          class="text-accent underline" target="_blank">View on GitHub</a>.</p>
+      </div>
+      <div class="card bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900" data-aos="fade-up" data-aos-delay="200">
+        <h2 class="text-2xl font-bold mb-2 text-dark-bg">Campus Network Planner</h2>
+        <p class="text-dark-bg">This is a project that I did that showcased graphing algorithms such as 
+          Kruskal's Algorithm in order to connect different campus networks with the least possible cost.
+          <a href="https://github.com/KevinTTO5/KevinTTO5.github.io/blob/main/CampusNetworkPlanner.java" 
+          class="text-accent underline" target="_blank">View on GitHub</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section Placeholder -->
+  <section
+  id="contact"
+  class="h-screen bg-white flex flex-col items-center justify-center space-y-6 px-6"
+>
+  <p class="text-gray-900 text-lg">
+    Contact section WIP, for now contact me here:
+  </p>
+
+  <div>
+    <ul class="list-disc list-inside space-y-2 text-gray-900">
+      <li>
+        Email:
+        <a
+          href="mailto:kevinarodriguez255@gmail.com"
+          class="text-blue-600 hover:underline"
+        >
+          kevinarodriguez255@gmail.com
+        </a>
+      </li>
+      <li>
+        LinkedIn:
+        <a
+          href="https://www.linkedin.com/in/kevin-rodriguez-098943191/"
+          target="_blank"
+          class="text-blue-600 hover:underline"
+        >
+          LinkedIn Profile
+        </a>
+      </li>
+      <li>
+        GitHub:
+        <a
+          href="https://github.com/KevinTTO5/KevinTTO5.github.io"
+          target="_blank"
+          class="text-blue-600 hover:underline"
+        >
+          GitHub Profile
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer class="w-full text-center py-4 bg-gray-100">
+    <p class="text-gray-900">
+      © 2025 Kevin Rodriguez. All Rights Reserved.
+    </p>
+  </footer>
+
+  <!-- AOS & Scroll Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 800 });
+
+    (function() {
+      const navbar = document.getElementById('navbar');
+      const navInner = document.getElementById('nav-inner');
+      const heroHeight = document.getElementById('hero').offsetHeight;
+      const navSwitchOffset = heroHeight - 0; // tweak this value to adjust the scroll trigger
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > navSwitchOffset) {
+          // Fade-in drop and solid background
+          navbar.classList.add('bg-black', 'bg-opacity-80', 'translate-y-0');
+          navInner.classList.replace('justify-end', 'justify-center');
+        } else {
+          navbar.classList.remove('bg-black', 'bg-opacity-80', 'translate-y-0');
+          navInner.classList.replace('justify-center', 'justify-end');
+        }
+      });
+    })();
+
+    (function() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(sec => {
+          const top = sec.offsetTop;
+          if (window.scrollY >= top - 1) {
+            current = sec.id;
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('text-accent','font-bold');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('text-accent','font-bold');
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
