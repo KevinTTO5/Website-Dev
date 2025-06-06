@@ -28,11 +28,11 @@
 
   <!-- Navigation: transparent then drop/fade on scroll -->
   <header id="navbar" class="fixed top-0 left-0 w-full z-50 transform transition-all duration-500 ease-out">
-    <div id="nav-inner" class="container mx-auto px-6 py-4 flex justify-end space-x-4">
-      <a href="#hero" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Home</a>
-      <a href="#about" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">About</a>
-      <a href="#projects" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Projects</a>
-      <a href="#contact" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Contact</a>
+    <div id="nav-inner" class="container mx-auto px-6 py-4 flex flex-col items-center space-y-2 md:flex-row md:justify-end md:space-x-4 md:space-y-0">
+      <a href="temp.html" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Home</a>
+      <a href="about.html" data-section="about" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">About</a>
+      <a href="projects.html" data-section="projects" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Projects</a>
+      <a href="contact.hmtl" data-section="contact" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Contact</a>
     </div>
   </header>
 
@@ -46,7 +46,7 @@
     </div>
   </section>
 
-  <!-- About Preview Section -->
+<!-- About Preview Section -->
   <section id="about" class="h-screen bg-white flex items-center">
     <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="card bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900" data-aos="fade-up">
@@ -176,28 +176,34 @@
         if (window.scrollY > navSwitchOffset) {
           // Fade-in drop and solid background
           navbar.classList.add('bg-black', 'bg-opacity-80', 'translate-y-0');
-          navInner.classList.replace('justify-end', 'justify-center');
+          navInner.classList.replace('md:justify-end', 'md:justify-center');
         } else {
           navbar.classList.remove('bg-black', 'bg-opacity-80', 'translate-y-0');
-          navInner.classList.replace('justify-center', 'justify-end');
+          navInner.classList.replace('md:justify-center', 'md:justify-end');
         }
       });
     })();
 
     (function() {
+      // only run this on the index page
+      if (!window.location.pathname.endsWith('temp.html') &&
+          window.location.pathname !== '/') return;
+
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
+
       window.addEventListener('scroll', () => {
-        let current = '';
+        let current = sections[0].id;  
         sections.forEach(sec => {
-          const top = sec.offsetTop;
-          if (window.scrollY >= top - 1) {
+          if (window.scrollY >= sec.offsetTop - 1) {
             current = sec.id;
           }
         });
+
         navLinks.forEach(link => {
+          const section = link.dataset.section;     // grab your data-section
           link.classList.remove('text-accent','font-bold');
-          if (link.getAttribute('href') === `#${current}`) {
+          if (section === current) {
             link.classList.add('text-accent','font-bold');
           }
         });
