@@ -28,28 +28,28 @@
 
   <!-- Navigation: transparent then drop/fade on scroll -->
   <header id="navbar" class="fixed top-0 left-0 w-full z-50 bg-dark-bg bg-opacity-90">
-  <!-- Wrap everything in a flex container so we can push the button/nav to the right -->
-  <div class="container mx-auto px-6 py-3 flex items-center justify-between">
-    
-    <!-- 1) Hamburger button (mobile only) -->
+  <!-- Give this wrapper the id so your scroll script targets it: -->
+  <div class="container mx-auto px-6 py-4 flex justify-end items-center">
+
+    <!-- 1) Hamburger (mobile only) -->
     <button
       id="nav-toggle"
       class="
-        md:hidden                /* hide on md+ */
-        relative w-8 h-8         /* fixed 32×32 px hit area */
-        flex flex-col items-center justify-center
+        md:hidden
+        w-8 h-8
+        relative flex flex-col justify-center items-center
         focus:outline-none focus:ring-0 active:outline-none
       "
       aria-label="Toggle navigation"
     >
-      <!-- Three bars (spans must be closed!) -->
       <span class="block w-6 h-0.5 bg-white rounded transition-transform duration-300 ease-in-out"></span>
       <span class="block w-6 h-0.5 bg-white rounded my-1 transition-opacity duration-300 ease-in-out"></span>
       <span class="block w-6 h-0.5 bg-white rounded transition-transform duration-300 ease-in-out"></span>
     </button>
 
-    <!-- 2) Desktop nav (hidden on mobile, flex on md+) -->
-    <nav id="nav-inner" class="hidden container mx-auto px-6 py-4 md:flex md:justify-end md:space-x-4 ">
+    <!-- 2) Desktop nav -->
+    <nav id="nav-inner" class="hidden md:flex md:space-x-4">
+      <!-- Make sure every link has a matching data-section -->
       <a href="temp.html" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Home</a>
       <a href="about.html" data-section="about" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">About</a>
       <a href="projects.html" data-section="projects" class="nav-link px-3 py-1 rounded-full transition hover:bg-white hover:bg-opacity-20">Projects</a>
