@@ -27,7 +27,7 @@
 <body class="bg-dark-bg text-white font-sans antialiased">
 
   <!-- Navigation: transparent then drop/fade on scroll -->
-  <header id="navbar" class="fixed top-0 left-0 w-full z-50 bg-dark-bg bg-opacity-90">
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 transform transition-all duration-500 ease-out bg-dark-bg bg-opacity-90">
   <!-- Give this wrapper the id so your scroll script targets it: -->
   <div class="container mx-auto px-6 py-4 flex justify-end items-center">
 
@@ -62,7 +62,7 @@
   <div
     id="mobile-overlay"
     class="
-      fixed inset-0
+      fixed inset-0 z-40
       bg-dark-bg bg-opacity-95
       flex flex-col items-center justify-center space-y-6
       transform scale-95 opacity-0 pointer-events-none
@@ -209,18 +209,19 @@
 
     (function() {
       const navbar = document.getElementById('navbar');
-      const navInner = document.getElementById('nav-inner');
+      const navInner = navbar.querySelector('.container');
       const heroHeight = document.getElementById('hero').offsetHeight;
       const navSwitchOffset = heroHeight - 0; // tweak this value to adjust the scroll trigger
 
       window.addEventListener('scroll', () => {
+        if (window.innerWidth < 768) return;
         if (window.scrollY > navSwitchOffset) {
           // Fade-in drop and solid background
           navbar.classList.add('bg-black', 'bg-opacity-80', 'translate-y-0');
-          navInner.classList.replace('md:justify-end', 'md:justify-center');
+          navInner.classList.replace('justify-end', 'justify-center');
         } else {
           navbar.classList.remove('bg-black', 'bg-opacity-80', 'translate-y-0');
-          navInner.classList.replace('md:justify-center', 'md:justify-end');
+          navInner.classList.replace('justify-center', 'justify-end');
         }
       });
     })();
@@ -296,22 +297,6 @@
     });
   });
 
-  // 3) Prevent “black bar on scroll” on mobile:
-  //    Only run your original scroll-to-bg-black script if the viewport is ≥768px.
-  window.addEventListener('scroll', () => {
-    if (window.innerWidth < 768) return;
-
-    const navbar = document.getElementById('navbar');
-    const navInner = navbar.querySelector('.container');
-    const heroHeight = document.getElementById('hero')?.offsetHeight || 0;
-    if (window.scrollY > heroHeight) {
-      navbar.classList.add('bg-black', 'bg-opacity-80');
-      navInner.classList.replace('justify-end', 'justify-center');
-    } else {
-      navbar.classList.remove('bg-black', 'bg-opacity-80');
-      navInner.classList.replace('justify-center', 'justify-end');
-    }
-  });
 </script>
 </body>
 </html>
