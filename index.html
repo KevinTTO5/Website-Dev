@@ -63,10 +63,9 @@
     id="mobile-overlay"
     class="
       fixed inset-0 z-40
+      hidden
       bg-dark-bg bg-opacity-95
       flex flex-col items-center justify-center space-y-6
-      transform scale-95 opacity-0 pointer-events-none
-      transition-all duration-300 ease-in-out
     "
   >
     <a href="temp.html" class="text-white text-2xl font-semibold hover:text-accent">Home</a>
@@ -255,48 +254,39 @@
 
 
 <script>
-  const toggleButton = document.getElementById('nav-toggle');
-  const mobileOverlay = document.getElementById('mobile-overlay');
-  const spans = toggleButton.querySelectorAll('span');
+  const toggleButton   = document.getElementById('nav-toggle');
+  const mobileOverlay  = document.getElementById('mobile-overlay');
+  const spans          = toggleButton.querySelectorAll('span');
   let isOpen = false;
 
   toggleButton.addEventListener('click', () => {
     isOpen = !isOpen;
 
+    // 1) Show/hide overlay
+    mobileOverlay.classList.toggle('hidden');
+
+    // 2) Animate hamburger ↔ X
     if (isOpen) {
-      // 1) Animate spans → X
-      spans[0].classList.add('rotate-45', 'translate-y-1.5');
+      spans[0].classList.add('rotate-45','translate-y-1.5');
       spans[1].classList.add('opacity-0');
-      spans[2].classList.add('-rotate-45', '-translate-y-1.5');
-
-      // 2) Show overlay (full screen)
-      mobileOverlay.classList.remove('scale-95', 'opacity-0', 'pointer-events-none');
-      mobileOverlay.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+      spans[2].classList.add('-rotate-45','-translate-y-1.5');
     } else {
-      // Reverse spans → back to hamburger
-      spans[0].classList.remove('rotate-45', 'translate-y-1.5');
+      spans[0].classList.remove('rotate-45','translate-y-1.5');
       spans[1].classList.remove('opacity-0');
-      spans[2].classList.remove('-rotate-45', '-translate-y-1.5');
-
-      // Hide overlay
-      mobileOverlay.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
-      mobileOverlay.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+      spans[2].classList.remove('-rotate-45','-translate-y-1.5');
     }
   });
 
-  // Optional: close overlay if any link is clicked
+  // Optional: close when a link is clicked
   mobileOverlay.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      isOpen = false;
-      spans[0].classList.remove('rotate-45', 'translate-y-1.5');
+      mobileOverlay.classList.add('hidden');
+      spans[0].classList.remove('rotate-45','translate-y-1.5');
       spans[1].classList.remove('opacity-0');
-      spans[2].classList.remove('-rotate-45', '-translate-y-1.5');
-
-      mobileOverlay.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
-      mobileOverlay.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+      spans[2].classList.remove('-rotate-45','-translate-y-1.5');
+      isOpen = false;
     });
   });
-
 </script>
 </body>
 </html>
