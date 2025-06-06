@@ -86,14 +86,66 @@
 </header>
 
 <script>
-  // Toggle the mobile menu when the hamburger is clicked
-  const toggleBtn = document.getElementById('nav-toggle');
-  const mobileNav = document.getElementById('mobile-nav');
+  const toggleButton = document.getElementById('nav-toggle');
+  const mobileOverlay = document.getElementById('mobile-overlay');
+  const spans = toggleButton.querySelectorAll('span');
+  let isOpen = false;
 
-  toggleBtn.addEventListener('click', () => {
-    mobileNav.classList.toggle('hidden');
+  toggleButton.addEventListener('click', () => {
+    isOpen = !isOpen;
+
+    if (isOpen) {
+      // 1) Animate spans → X
+      spans[0].classList.add('rotate-45', 'translate-y-1.5');
+      spans[1].classList.add('opacity-0');
+      spans[2].classList.add('-rotate-45', '-translate-y-1.5');
+
+      // 2) Show overlay (full screen)
+      mobileOverlay.classList.remove('scale-95', 'opacity-0', 'pointer-events-none');
+      mobileOverlay.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+    } else {
+      // Reverse spans → back to hamburger
+      spans[0].classList.remove('rotate-45', 'translate-y-1.5');
+      spans[1].classList.remove('opacity-0');
+      spans[2].classList.remove('-rotate-45', '-translate-y-1.5');
+
+      // Hide overlay
+      mobileOverlay.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
+      mobileOverlay.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+    }
+  });
+
+  // Optional: close overlay if any link is clicked
+  mobileOverlay.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      spans[0].classList.remove('rotate-45', 'translate-y-1.5');
+      spans[1].classList.remove('opacity-0');
+      spans[2].classList.remove('-rotate-45', '-translate-y-1.5');
+
+      mobileOverlay.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
+      mobileOverlay.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+    });
+  });
+
+  // 3) Prevent “black bar on scroll” on mobile:
+  //    Only run your original scroll-to-bg-black script if the viewport is ≥768px.
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth < 768) return;
+
+    const navbar = document.getElementById('navbar');
+    const navInner = navbar.querySelector('.container');
+    const heroHeight = document.getElementById('hero')?.offsetHeight || 0;
+    if (window.scrollY > heroHeight) {
+      navbar.classList.add('bg-black', 'bg-opacity-80');
+      navInner.classList.replace('justify-end', 'justify-center');
+    } else {
+      navbar.classList.remove('bg-black', 'bg-opacity-80');
+      navInner.classList.replace('justify-center', 'justify-end');
+    }
   });
 </script>
+
 
 
   <!-- Hero Section -->
