@@ -35,17 +35,23 @@
       class="md:hidden flex items-center justify-center p-2 rounded hover:bg-white hover:bg-opacity-20 focus:outline-none"
       aria-label="Open menu"
     >
-      <!-- three-line “hamburger” icon -->
-      <svg
-        class="w-6 h-6 text-white"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
+      <!-- Hamburger button (mobile only) -->
+      <button
+      id="nav-toggle"
+      class="
+        md:hidden           /* hide on md+ */
+        relative            /* for positioning the spans */
+        w-8 h-8             /* size of the button */
+        flex flex-col 
+        items-center justify-center 
+        focus:outline-none  /* remove default focus ring */
+      "
+      aria-label="Toggle navigation"
+    >
+      <!-- Each span is one bar of the hamburger -->
+      <span class="block w-6 h-0.5 bg-white rounded transition-transform duration-300 ease-in-out" />
+      <span class="block w-6 h-0.5 bg-white rounded my-1 transition-opacity duration-300 ease-in-out" />
+      <span class="block w-6 h-0.5 bg-white rounded transition-transform duration-300 ease-in-out" />
     </button>
 
     <!-- 3) Full nav links (hidden on mobile, shown on md+) -->
@@ -57,14 +63,25 @@
     </nav>
   </div>
 
-  <!-- 4) Mobile dropdown (initially hidden) -->
-  <div id="mobile-nav" class="hidden bg-dark-bg bg-opacity-95">
-    <nav class="flex flex-col space-y-1 px-6 py-4">
-      <a href="temp.html" class="block px-3 py-2 rounded-full text-white hover:bg-white hover:bg-opacity-20">Home</a>
-      <a href="about.html" data-section="about" class="block px-3 py-2 rounded-full text-white hover:bg-white hover:bg-opacity-20">About</a>
-      <a href="projects.html" data-section="projects" class="block px-3 py-2 rounded-full text-white hover:bg-white hover:bg-opacity-20">Projects</a>
-      <a href="contact.html" data-section="contact" class="block px-3 py-2 rounded-full text-white hover:bg-white hover:bg-opacity-20">Contact</a>
-    </nav>
+  <!-- Full-screen mobile overlay (hidden by default) -->
+  <div
+    id="mobile-overlay"
+    class="
+      fixed inset-0             /* cover entire viewport */
+      bg-dark-bg bg-opacity-95   /* solid-ish dark background */
+      flex flex-col items-center justify-center
+      space-y-6
+      transform scale-95        /* start slightly scaled down */
+      opacity-0                 /* invisible initially */
+      pointer-events-none       /* no clicks when hidden */
+      transition-all duration-300 ease-in-out
+    "
+  >
+    <!-- Mobile links -->
+    <a href="temp.html" class="text-white text-2xl font-semibold hover:text-accent">Home</a>
+    <a href="about.html" class="text-white text-2xl font-semibold hover:text-accent">About</a>
+    <a href="projects.html" class="text-white text-2xl font-semibold hover:text-accent">Projects</a>
+    <a href="contact.html" class="text-white text-2xl font-semibold hover:text-accent">Contact</a>
   </div>
 </header>
 
