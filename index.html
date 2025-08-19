@@ -136,8 +136,27 @@
   <section id="about" class="h-screen bg-white flex items-center">
     <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="card bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900" data-aos="fade-up">
-        <h2 class="text-2xl font-bold mb-2 text-dark-bg">About Me:</h2>
+        <h2 class="text-2xl font-bold mb-2 text-dark-bg">Welcome</h2>
         <p class="text-dark-bg">Welcome to my personal portfolio. Here you’ll find highlights of my work, my skills, and what drives me as a developer.</p>
+      </div>
+      <div class="card bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900" data-aos="fade-up" data-aos-delay="200">
+        <h2 class="text-2xl font-semibold mb-2 text-dark-bg">About This Page: Projects</h2>
+        <p class="text-dark-bg">This section houses my project highlights as well as WIP interactive demos. 
+          These projects consist of independent work, as well as coursework through my latter college years.</p>
+      </div>
+      <div
+      class="card
+             bg-accent bg-opacity-20 p-6 rounded-lg shadow-lg text-gray-900
+             md:col-span-2            /* makes it stretch across both columns */
+             justify-self-center     /* centers it within that span */
+             max-w-md                /* limit its width so it doesn’t fill the entire row */
+             mt-4                    /* optional: add a bit of top-margin so it sits below the above two */
+             "
+      data-aos="fade-up"
+      data-aos-delay="200">
+        <h2 class="text-2xl font-semibold mb-2 text-dark-bg">About This Page: Contact</h2>
+        <p class="text-dark-bg">This section houses any forms of contacting me as well as a WIP means of direct chat 
+          for some more interactive communication.</p>
       </div>
     </div>
   </section>
@@ -367,4 +386,3 @@
 
 </body>
 </html>
-
